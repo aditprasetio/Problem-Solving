@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb5d0ed7e32f6749ab046f70b76ac4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleRandomValue: {x: 4, y: 4}
+  scaleRandomValue: {x: 7, y: 7}
 --- !u!61 &7061633047247057289
 BoxCollider2D:
   m_ObjectHideFlags: 0

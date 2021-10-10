@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [Header("Box Coin Controller")]
     public int coinSpawn;
     [SerializeField] CoinBox boxCoinPrefabs;
+    private List<CoinBox> boxCoinsPool = new List<CoinBox>();
 
     [Header("Game area constraint")]
     public float areaConstraintValue = 5f;
@@ -48,9 +49,36 @@ public class GameManager : MonoBehaviour
 
         return new Vector2(xPosition, yPosition);
     }
+
+
+  
     public void AddScore()
     {
         Score++;
         scoreText.text = $"Score : {Score}";
+    }
+
+    public void RespawnBox() => StartCoroutine(ReSpawnBox());
+    IEnumerator ReSpawnBox()
+    {
+        yield return new WaitForSeconds(3);
+        CoinBox coin = GetBox();
+        coin.Spawn();
+    }
+
+    public CoinBox GetBox()
+    {
+        for (int i = 0; i < boxCoinsPool.Count; i++)
+        {
+            if (!boxCoinsPool[i].gameObject.activeSelf)
+            {
+                boxCoinsPool[i].gameObject.SetActive(true);
+                return boxCoinsPool[i];
+            }
+        }
+
+        CoinBox boxObject = Instantiate(boxCoinPrefabs, transform);
+        boxCoinsPool.Add(boxObject);
+        return boxObject;
     }
 }

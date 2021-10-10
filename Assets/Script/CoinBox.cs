@@ -44,7 +44,9 @@ public class CoinBox : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.AddScore();
+            GameManager.Instance.RespawnBox();
             gameObject.SetActive(false);
+
         }
     }
 }
