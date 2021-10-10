@@ -8,4 +8,5 @@ Chapter 10
 6. Menyebarkan kotak-kotak kecil secara random
 7. Membuat objek lingkaran mendapatkan skor dengan menabrakan kotak yang sudah di sebar
 8. Memunculkan kembali kotak yang sudah tertabrak, 3 detik setelah tertabrak dan di posisi acak
-9 & 10 Proses
+9. Proses
+10. Proses
