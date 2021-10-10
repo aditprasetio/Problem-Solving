@@ -8,11 +8,16 @@ public class mouseMovment : MonoBehaviour
     public float moveConstraint = 5.5f;
     private Vector3 targetMove;
 
-    private Rigidbody2D Rigidbody2D;
+    private Rigidbody2D PlayerRigidbody2D;
 
     private void Awake()
     {
-        Rigidbody2D = GetComponent<Rigidbody2D>();
+        PlayerRigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+
     }
 
     private void Update()

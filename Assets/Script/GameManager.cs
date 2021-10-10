@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,13 +20,16 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-
+    public int Score { get; private set; }
     [Header("Box Coin Controller")]
     public int coinSpawn;
     [SerializeField] CoinBox boxCoinPrefabs;
 
     [Header("Game area constraint")]
     public float areaConstraintValue = 5f;
+
+    [Header("UI")]
+    public Text scoreText;
 
     private void Start()
     {
@@ -34,6 +38,7 @@ public class GameManager : MonoBehaviour
             CoinBox coin = Instantiate(boxCoinPrefabs);
             coin.Spawn();
         }
+        scoreText.text = $"Score : {Score}";
     }
 
     public Vector2 GetRandomPosition()
@@ -42,5 +47,10 @@ public class GameManager : MonoBehaviour
         float yPosition = Random.Range(-areaConstraintValue, areaConstraintValue);
 
         return new Vector2(xPosition, yPosition);
+    }
+    public void AddScore()
+    {
+        Score++;
+        scoreText.text = $"Score : {Score}";
     }
 }

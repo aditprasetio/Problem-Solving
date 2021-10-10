@@ -5,7 +5,6 @@ using UnityEngine;
 public class CoinBox : MonoBehaviour
 {
     public Vector2 scaleRandomValue;
-
     private Transform player;
 
     private void Awake()
@@ -39,5 +38,13 @@ public class CoinBox : MonoBehaviour
         float yScale = Random.Range(scaleRandomValue.x, scaleRandomValue.y);
 
         transform.localScale = new Vector2(xScale, yScale);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.AddScore();
+            gameObject.SetActive(false);
+        }
     }
 }
