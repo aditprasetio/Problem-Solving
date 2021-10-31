@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
     #region SINGLETON
     private static GameManager _instance;
     public static GameManager Instance
@@ -20,7 +22,9 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
     public int Score { get; private set; }
+
     [Header("Box Coin Controller")]
     public int coinSpawn;
     [SerializeField] CoinBox boxCoinPrefabs;
@@ -31,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     public Text scoreText;
-
+    bool gameHasEnded = false;
     private void Start()
     {
         for (int i = 0; i < coinSpawn; i++)
@@ -81,4 +85,20 @@ public class GameManager : MonoBehaviour
         boxCoinsPool.Add(boxObject);
         return boxObject;
     }
+
+    public void EndGame()
+    {
+        if (gameHasEnded == false)
+        {
+            gameHasEnded = true;
+            Debug.Log("Game Over");
+            Restart();
+        }
+    }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }
